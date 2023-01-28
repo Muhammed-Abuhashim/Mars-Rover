@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	    <title></title>
+	    <link rel="stylesheet" href="./style.css">
+	    <meta charset="UTF-8" />
+    </head>
+
+    <body>
+	    <div  class="Center">
+            <h1 class="caption">Mars Rover Task</h1>
+						<h4>Guidelines: When the rover touches down on Mars, it is initialised with it’scurrent coordinates and the direction it is facing.<br> These could be any coordinates, supplied as arguments (x, y, direction) You can enter it as shown below, and then <br>enter the command and press submit to show you the answers to the first part and the second part </h4>
+						<h4>(Note: Direction Must Begin With A Capital Letter)</h4><br>
+            <label>X : </label>
+            <input type="text"  id="x" class="text2" name="txt" value="">
+            <label>Y : </label>
+            <input type="text"  id="y" class="text3" name="txt" value="">
+            <label>Direction : </label>
+            <input type="text"  id="d" class="text2" name="txt" value="">
+            <br><br>
+            <label>The Command : </label>
+            <input type="text" id="txt"  name="txt" value="">
+            <br><br>
+            <button type="button" onclick="Part1()"> Submit </button>
+            <br><br>
+            <label>Part1 Answer : </label>
+            <textarea name="name" id="txt3" rows="1" cols="30"></textarea>
+
+	        <script type="text/javascript">
+
+                // increment function
+                function inc(coordinates){
+                    return coordinates+1
+                }
+
+                // decrement function
+                function dec(coordinates){
+                    return coordinates -1
+                }
+
+								// TEST CASE1 ---> INPUT : FLFFFRFLB  						East 			 x=4  	y=2 ,		 			OUTPUT : North   		x=6  y=4
+                // TEST CASE2 ---> INPUT : BRFBFLFRF  					East    		x=4 	 y=2 , 				OUTPUT : South    	  x=4  y=4
+                // TEST CASE3 ---> INPUT : FFRFFFLFLF  				East    		x=4 	 y=2 , 				OUTPUT : North    		x=7  y=6
+                // TEST CASE4 ---> INPUT : FFRFF  									East    		x=10 	 y=10 , 		OUTPUT : South 	   		x=12  y=12
+                // TEST CASE5 ---> INPUT : FFRFF 									 East    			x=6 	 y=10 , 		OUTPUT : South    		x=8  y=12
+
+                // Part1
+                function Part1(){
+                    var x_p1 = parseInt(document.getElementById('x').value)
+                    var y_p1 = parseInt(document.getElementById('y').value)
+                    var direction_p1 = document.getElementById('d').value
+                    var str_p1 = document.getElementById('txt').value
+                    var str2_p1 = str_p1.split("")
+                    var len_p1 = str2_p1.length
+                    for(let i = 0 ; i<len_p1; i++){
+                      switch (direction_p1) {
+                          case 'East':{
+                              switch(str2_p1[i]){
+                                  case 'F':{
+                                        x_p1 = inc(x_p1)
+                                  break }
+
+                                  case 'B':{
+                                       x_p1 = dec(x_p1)
+                                  break}
+
+                                  case 'L':{
+                                       direction_p1 = "North"
+                                  break }
+
+                                  case 'R':{
+                                       direction_p1 = "South"
+                                  break }
+                              }
+                          break }
+
+                          case 'West':{
+                              switch(str2_p1[i]){
+                                  case 'F':{
+                                       x_p1 = inc(x_p1)
+                                  break }
+
+                                  case 'B':{
+                                       x_p1 = dec(x_p1)
+                                  break }
+
+                                  case 'L':{
+                                       direction_p1 = "South"
+                                  break }
+
+                                  case 'R':{
+                                       direction_p1 = "North"
+                                  break }
+                              }
+                          break }
+
+                          case 'North':{
+                              switch(str2_p1[i]){
+                                  case 'F':{
+                                       y_p1 = inc(y_p1)
+                                  break }
+
+                                  case 'B':{
+                                       y_p1 = dec(y_p1)
+                                  break }
+
+                                  case 'L':{
+                                       direction_p1 = "West"
+                                  break }
+
+                                  case 'R':{
+                                       direction_p1 = "East"
+                                  break }
+                              }
+                          break }
+
+                          case 'South':{
+                              switch(str2_p1[i]){
+                                  case 'F':{
+                                       y_p1 = inc(y_p1)
+                                  break }
+
+                                  case 'B':{
+                                       y_p1 = dec(y_p1)
+                                  break }
+
+                                  case 'L':{
+                                       direction_p1 = "East"
+                                  break }
+
+                                  case 'R':{
+                                       direction_p1 = "West"
+                                  break }
+                              }
+                          break }
+                          default:
+                      }
+                    }
+                    document.getElementById('txt3').innerHTML = '('+x_p1+','+y_p1+')'+direction_p1
+
+                }
+	        </script>
+	    </div>
+    </body>
+</html>
